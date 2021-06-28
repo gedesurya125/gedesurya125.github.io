@@ -6,5 +6,5 @@
 <hr>
 
 ### Day 5
-  Adding CSS to created html markup on task 3 and make desain like shared figma wireframe by mas 
+  Adding CSS to created html markup on task 3 and make desain like shared figma wireframe by Facilitator
   <hr>
