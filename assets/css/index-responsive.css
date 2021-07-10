@@ -59,7 +59,7 @@
     grid-column: 2 / span 1;
     margin-right: 4em;
   }
-  
+
   #project-content {
     display: flex;
     flex-wrap: wrap;
@@ -129,6 +129,9 @@
     /* position: absolute;
     left: 20em;
     top: 13em; */ 
+  }
+  .about-img{
+    margin-right: 6em;
   }
   #videos > .heading-text {
     align-self: center;
