@@ -125,11 +125,12 @@
 
 
 @media (min-width: 1200px){
-  #about > p {
-    /* position: absolute;
+  /* #about > p {
+    position: absolute;
     left: 20em;
-    top: 13em; */ 
-  }
+    top: 13em;
+  } */
+  
   .about-img{
     margin-right: 6em;
   }
