@@ -28,6 +28,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
   }
+
   .about-img{
     /* position: absolute;
     top: 9em;
@@ -53,6 +54,11 @@
     align-self: start;
   }
 
+  .badge{
+    justify-self: center;
+    grid-column: 2 / span 1;
+    margin-right: 4em;
+  }
   #project-content {
     display: flex;
     flex-wrap: wrap;

@@ -71,6 +71,9 @@
   display: none;
 }
 
+.badge{
+  width: 100%;
+}
 .heading-text {
   font-size: 2em;
   text-align: center;
