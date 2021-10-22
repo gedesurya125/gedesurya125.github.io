@@ -1,24 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Skills from "./pages/Skills";
+import "./App.css";
+import DrawerContainer from "./components/drawer/DrawerContainer";
 
 function App() {
+  type PageRouter = {
+    exact: boolean;
+    path: string;
+    component: React.FunctionComponent;
+  }[];
+
+  const pageRouter: PageRouter = [
+    {
+      exact: true,
+      path: "/",
+      component: Home,
+    },
+    {
+      exact: true,
+      path: "/contact",
+      component: Contact,
+    },
+    {
+      exact: true,
+      path: "/about",
+      component: About,
+    },
+    {
+      exact: true,
+      path: "/skills",
+      component: Skills,
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App flex bg-gray-900">
+      <Router>
+        <DrawerContainer />
+        <Switch>
+          {pageRouter.map((route) => (
+            <Route key={route.path} {...route} />
+          ))}
+        </Switch>
+      </Router>
     </div>
   );
 }
