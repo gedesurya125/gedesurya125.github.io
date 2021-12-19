@@ -14,82 +14,126 @@ import tailwindIcon from "./img/icon/tailwind-css.png";
 import reduxSagaIcon from "./img/icon/redux-saga.svg";
 import bootstrapIcon from "./img/icon/bootstrap2.svg";
 import gitIcon from "./img/icon/gitIcon.svg";
+import projectImage from "./img/icon/th-large-solid2.svg";
+import skillsImage from "./img/icon/tools-solid2.svg";
+import profileImage from "./img/icon/user-solid.svg";
+import contactImage from "./img/icon/envelope-solid2.svg";
+import homeImage from "./img/icon/home-solid2.svg";
 
-import efCert from "./img/Sertifikat/EF SET Certificate.png";
-// import fccJsAlgorithmCert from "./img/Sertifikat/fcc_js_algorithm.jpg";
-import fccResponsiveCert from "./img/Sertifikat/fcc_responsive_web_design.jpg";
-import pgHtmlCssCert from "./img/Sertifikat/htmlcss-1.png";
-import pgjavascriptCert from "./img/Sertifikat/javascript-1.png";
-import pgGitCert from "./img/Sertifikat/progate-git-1.png";
-import pgReactCert from "./img/Sertifikat/react-1.png";
-import pgSassCert from "./img/Sertifikat/sass-1.png";
-import glintsCert from "./img/Sertifikat/glintsCertSurya.svg";
-import glintsAcheivemet from "./img/Sertifikat/glintsAcheivementSurya.svg";
+// INTERFACE LINST ====
 
-export interface MyProfile {
-  biodata: {
-    name: string;
-    dateOfBirth: Date;
-    localAddress: {
-      street: string;
-      kelurahan: string;
-      kecamatan: string;
-      kabupaten: string;
-      provinsi: string;
-      nationality: string;
-    };
-  };
-  contact: {
-    mobile: string;
-    email: string;
-    linkedin: string;
-    github: string;
-    gitlab: string;
-  };
-  skills: {
-    name: string;
-    image: string;
-    rating: number;
-  }[];
-  professionalSummary: string;
-  project: {
-    projectName: string;
-    site: string;
-    repository: string;
-    descriptionList: string[];
-  }[];
-  experience: {
-    company: string;
-    role: string;
-    startDate: Date;
-    endDate: Date;
-    jobDescriptionList: string[];
-  }[];
-  education: {
-    institution: string;
-    location: string;
-    major: string;
-    grade: number | null;
-    graduationDate: Date;
-  }[];
-  additional: {
-    language: {
-      name: string;
-      grade: "advanced" | "native";
-    }[];
-    certification: {
-      title: string;
-      publisher: string;
-      credentialsLink: string;
-      image: string;
-    }[];
+export interface BiodataValidator {
+  name: string;
+  nickname: string;
+  role: string;
+  dateOfBirth: Date;
+  localAddress: {
+    street: string;
+    kelurahan: string;
+    kecamatan: string;
+    kabupaten: string;
+    provinsi: string;
+    nationality: string;
   };
 }
 
-//=================================
+export interface ContactValidator {
+  mobile: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  gitlab: string;
+}
+
+export interface SkillsValidator {
+  name: string;
+  image: string;
+  rating: number;
+}
+
+export interface RepositoryValidator {
+  github: string | null;
+  gitlab: string | null;
+}
+
+export interface ProjectValidator {
+  id: string;
+  projectName: string;
+  imageList: string[];
+  site: string;
+  repository: RepositoryValidator;
+  descriptionList: string[];
+  brief: string;
+  techStacks: string[];
+}
+
+export interface ExperienceValidator {
+  company: string;
+  role: string;
+  startDate: Date;
+  endDate: Date;
+  jobDescriptionList: string[];
+}
+
+export interface EducationValidator {
+  institution: string;
+  location: string;
+  major: string;
+  grade: number | null;
+  graduationDate: Date;
+}
+
+export interface LanguageValidator {
+  name: string;
+  grade: "intermediate" | "advanced" | "native";
+}
+
+export interface CertificationValidator {
+  title: string;
+  publisher: string;
+  credentialsLink: string;
+  image: string;
+}
+
+export interface AdditionValidator {
+  language: LanguageValidator[];
+  certification: CertificationValidator[];
+}
+
+export interface MyProfile {
+  biodata: BiodataValidator;
+  contact: ContactValidator;
+  skills: SkillsValidator[];
+  professionalSummary: string;
+  projects: ProjectValidator[];
+  experience: ExperienceValidator[];
+  education: EducationValidator[];
+  additional: AdditionValidator;
+}
+
+export type LabelType = "Home" | "Project" | "Contact" | "Skills" | "About";
+
+export interface NavigationValidator {
+  iconClassName: string;
+  label: LabelType;
+  link: string;
+  image: string;
+}
+
+export type SocialMediaValidator = {
+  iconClassName: string;
+  label: string;
+  link: string;
+};
+
+// ============ DATA LIST =================
+
+// Profile Data
 export const myProfile: MyProfile = {
   biodata: {
     name: "I Gede Surya Adi Pranata",
+    nickname: "Surya Adi",
+    role: "Front end web developer",
     dateOfBirth: new Date("1993-10-06"),
     localAddress: {
       street: "BTN Dalung Permai Blok C3 No 11, Lingk Bumi Kertha",
@@ -146,12 +190,23 @@ export const myProfile: MyProfile = {
   ],
   professionalSummary:
     "Frontend Engineer, experienced at inspiring and coordinating teams. Skilled at ReactJS and Material Ui. Accurately translated UI/UX design into application. Have a passion for innovation. Dedicated to never stop learning as has high curiosity on awesome latest technology",
-  project: [
+  projects: [
     {
+      id: "1",
       projectName: "MUSICON",
+      imageList: [
+        "https://i.ibb.co/n6fH7Lj/rate-Playlist.png",
+        "https://i.ibb.co/MZgGL2R/album-page.png",
+        "https://i.ibb.co/gmkLqTS/liked-song.png",
+        "https://i.ibb.co/99g28HX/landing-Page.png",
+        "https://i.ibb.co/dm8sQPC/playlist.png",
+      ],
       site: "https://musicon-web.herokuapp.com/",
-      repository:
-        "https://gitlab.com/binarxglints_batch13/finalproject/team-a/frontendteam_a",
+      repository: {
+        github: null,
+        gitlab:
+          "https://gitlab.com/binarxglints_batch13/finalproject/team-a/frontendteam_a",
+      },
       descriptionList: [
         "Constructed project base with 4 cores setup: ReactJS, material-UI, Redux Saga, and React-router-dom",
         "Contributed on 9 pages design of landing page, home page, browse page, all user’s playlist page, current user’s created playlist page, user’s loved songs page, artist and album page, and user’s account page.",
@@ -163,28 +218,89 @@ export const myProfile: MyProfile = {
         "Facilitated 2 FE team members for meeting and Illustrated app flow, and Mentored when they need support to get out from stuck",
         "Executed 40+ unit testing  of 7 widely used functions.",
       ],
+      brief:
+        "Musicon is a simple music player app, just a few button clicks away to discover songs you like. It has highly-customizable playlist features. Discover other's playlists and rate them or publish your playlists for the world to show your good taste in music.",
+      techStacks: [
+        "ReactJS",
+        "Axios",
+        "Redux-Saga",
+        "HTML5",
+        "Material UI",
+        "JSS",
+        "Socket.IO",
+        "Google OAuth 2.0",
+        "Facebook Auth",
+        "Progressive Web App",
+      ],
     },
     {
+      id: "2",
       projectName: "GAMES-WORLD",
+      imageList: [
+        "https://i.ibb.co/TPcpgc5/homepage-Full.png",
+        "https://i.ibb.co/YbLSQmr/games-Detail.png",
+        "https://i.ibb.co/hCcGvdG/favouritegames.png",
+        "https://i.ibb.co/f80RhYg/homepage.png",
+        "https://i.ibb.co/42pcHyK/category-Page.png",
+        "https://i.ibb.co/D5TjHjp/searchbar.png",
+      ],
       site: "https://games-world.netlify.app/",
-      repository: "https://github.com/gedesurya125/gamedirectory",
+      repository: {
+        github: "https://github.com/gedesurya125/gamedirectory",
+        gitlab: null,
+      },
       descriptionList: [
         "Consumed 5 APIs from api.rawg.io",
         "Completed 5 important designs and functionalities of search bar, all games displayed with pagination. games details, games page based on category and utilized local storage to make favorited games page",
         "Utilized drawer component to gather important navigation of 3 major pages with 19 game genres",
       ],
+      brief:
+        "Games World is a Web app that shows you the latest popular games and its details or you can search your desired game and save it to your favorite page.",
+      techStacks: [
+        "ReactJS",
+        "MaterialUI",
+        "JSS",
+        "Redux-Saga",
+        "Axios",
+        "Local Storage",
+        "Git",
+        "GitHub",
+      ],
     },
     {
+      id: "3",
       projectName: "MACAN MOVIE",
+      imageList: [
+        "https://i.ibb.co/NL68V3b/homepage.png",
+        "https://i.ibb.co/cFBQfCM/user-Page-With-Photo.png",
+        "https://i.ibb.co/nbg53YG/userpage.png",
+        "https://i.ibb.co/qjdkzLm/reviewpage.png",
+        "https://i.ibb.co/KFRsf2x/synopsis.png",
+        "https://i.ibb.co/QCM7vRS/homepage-Dark.png",
+      ],
       site: "	http://macan-movie-app.herokuapp.com/",
-      repository:
-        "https://gitlab.com/binarxglints_batch13/miniproject/team-c/frontendteam_c",
+      repository: {
+        gitlab: "https://gitlab.com/binarxglints_batch13/miniproject/team-c/frontendteam_c",
+        github: null,
+      },
       descriptionList: [
         "Settled 15+ APIs consumption from Backend Team",
         "Constructed project base using 4 cores of ReactJS, material-UI, Redux Saga, and React-router-dom",
         "Developed 6 tasks, e.g  home page, category page, search bar, movie review, movie artist and movie 	synopsis page and finalized  design and functionality of both movie rating and review.",
         "Finished the app with only 1 team member and Facilitated team meeting to Illustrated the App Flow Mentored when support needed",
         "Collaborated with the Back End Team to design 15+ required APIs",
+      ],
+      brief:
+        "Macan Movie App is the app that provides you with the latest information on trending movies. You can see how much rating for the movie and its synopsis, its artist and user reviews on it. If you want to create a review to a movie you have to login first.",
+      techStacks: [
+        "ReactJS",
+        "MaterialUI",
+        "JSS",
+        "Git",
+        "Gitlab",
+        "Heroku",
+        "Axios",
+        "Redux-Saga",
       ],
     },
   ],
@@ -240,70 +356,123 @@ export const myProfile: MyProfile = {
         publisher: "glints x Binar Academy",
         credentialsLink:
           "https://drive.google.com/file/d/13kAp_XIch6KKMToINjJ05dx6IvX7M4NL/view?usp=sharing",
-        image: glintsCert,
+        image: "https://i.ibb.co/hDxybB3/suryacert.png",
       },
       {
         title: "The best team appreciation",
         publisher: "glints x Binnar Academy",
         credentialsLink:
           "https://drive.google.com/file/d/12oT-d_5SlV4gKkbfd15vryORFGEJB50E/view?usp=sharing",
-        image: glintsAcheivemet,
+        image: "https://i.ibb.co/yRymPkJ/musicon.png",
       },
       {
         title: "Responsive Web Desgn",
         publisher: "FreeCodeCamp",
         credentialsLink:
           "https://www.freecodecamp.org/certification/fcc089fbae6-43a4-4363-ab74-6fae2f647b25/responsive-web-design",
-        image: fccResponsiveCert,
+        image: "https://i.ibb.co/jLt13PY/fcc-responsive-web-design.jpg",
       },
       {
         title: "Javascript Algorithn & Data Structure",
         publisher: "FreeCodeCamp",
         credentialsLink:
           "https://www.freecodecamp.org/certification/fcc089fbae6-43a4-4363-ab74-6fae2f647b25/javascript-algorithms-and-data-structures",
-        image: fccResponsiveCert,
+        image: "https://i.ibb.co/JmsdGvq/fcc-js-algorithm.jpg",
       },
       {
         title: "GIT Course",
         publisher: "Progate",
         credentialsLink:
           "https://progate.com/course_certificate/e1e534d6quujm6",
-        image: pgGitCert,
+        image: "https://i.ibb.co/RSBtybk/progate-git-1.png",
       },
       {
         title: "HTML & CSS Course",
         publisher: "Progate",
         credentialsLink:
           "https://progate.com/course_certificate/8261c36aqusf7n",
-        image: pgHtmlCssCert,
+        image: "https://i.ibb.co/JRZ8m3q/htmlcss-1.png",
       },
       {
         title: "Javascript Course",
         publisher: "Progate",
         credentialsLink:
           "https://progate.com/course_certificate/113ca911quss16",
-        image: pgjavascriptCert,
+        image: "https://i.ibb.co/31cqbWP/javascript-1.png",
       },
       {
         title: "React Course",
         publisher: "Progate",
         credentialsLink:
           "https://progate.com/course_certificate/ab4c0a14quu7y8",
-        image: pgReactCert,
+        image: "https://i.ibb.co/pwD42cs/react-1.png",
       },
       {
         title: "Sass Course",
         publisher: "Progate",
         credentialsLink:
           "https://progate.com/course_certificate/baf949f1quuacy",
-        image: pgSassCert,
+        image: "https://i.ibb.co/s9wSMZz/sass-1.png",
       },
       {
         title: "English First Standard English Test (EF SET)",
         publisher: "English First",
         credentialsLink: "https://www.efset.org/cert/VxyBFQ",
-        image: efCert,
+        image: "https://i.ibb.co/rkx9pnh/EF-SET-Certificate.png",
       },
     ],
   },
 };
+
+// Navigation Data
+export const navigationIcon: NavigationValidator[] = [
+  {
+    iconClassName: "fas fa-home",
+    label: "Home",
+    link: "/",
+    image: homeImage,
+  },
+  {
+    iconClassName: "fas fa-th-large",
+    label: "Project",
+    link: "/project",
+    image: projectImage,
+  },
+  {
+    iconClassName: "fas fa-envelope",
+    label: "Contact",
+    link: "/contact",
+    image: contactImage,
+  },
+  {
+    iconClassName: "fas fa-tools",
+    label: "Skills",
+    link: "/skills",
+    image: skillsImage,
+  },
+  {
+    iconClassName: "fas fa-user",
+    label: "About",
+    link: "/about",
+    image: profileImage,
+  },
+];
+
+// Social Media Data
+export const socialMedia: SocialMediaValidator[] = [
+  {
+    iconClassName: "fab fa-github",
+    label: "github",
+    link: myProfile.contact.github,
+  },
+  {
+    iconClassName: "fab fa-gitlab",
+    label: "gitlab",
+    link: myProfile.contact.gitlab,
+  },
+  {
+    iconClassName: "fab fa-linkedin",
+    label: "linkedIn",
+    link: myProfile.contact.linkedin,
+  },
+];

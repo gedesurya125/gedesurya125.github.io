@@ -1,57 +1,13 @@
 import React from "react";
-import { myProfile } from "../../data/myProfile";
+import { useHistory } from "react-router";
+import {navigationIcon, socialMedia} from '../../data/myProfile'
 
 const DrawerContainer = () => {
-  const navigationIcon = [
-    {
-      iconClassName: "fas fa-home",
-      label: "Home",
-    },
-    {
-      iconClassName: "fas fa-project-diagram",
-      label: "Project",
-    },
-    {
-      iconClassName: "fas fa-envelope",
-      label: "Contact",
-    },
-    {
-      iconClassName: "fas fa-tools",
-      label: "Skills",
-    },
-    {
-      iconClassName: "fas fa-user",
-      label: "About",
-    },
-  ];
-
-  type SocialMediaValidator = {
-    iconClassName: string;
-    label: string;
-    link: string;
-  }[];
-
-  const socialMedia: SocialMediaValidator = [
-    {
-      iconClassName: "fab fa-github",
-      label: "github",
-      link: myProfile.contact.github,
-    },
-    {
-      iconClassName: "fab fa-gitlab",
-      label: "gitlab",
-      link: myProfile.contact.gitlab,
-    },
-    {
-      iconClassName: "fab fa-linkedin",
-      label: "linkedIn",
-      link: myProfile.contact.linkedin,
-    },
-  ];
-
+  const history = useHistory();
   const renderNavIcon = () =>
     navigationIcon.map((nav, index) => (
       <div
+        onClick={() => history.push(nav.link)}
         key={index}
         className="group transition-all duration-500 hover:bg-blue-700 cursor-pointer text-center relative"
       >
@@ -81,7 +37,7 @@ const DrawerContainer = () => {
   };
 
   return (
-    <div className="border-r-2 h-screen border-solid border-blue-800 flex flex-col justify-between bg-black">
+    <div className="border-r-2 h-screen border-solid border-blue-800 flex flex-col justify-between sticky top-0 left-0 bg-black z-10">
       <div className="nav-container">{renderNavIcon()}</div>
       <div className="social-media">{renderSocialMedia()}</div>
     </div>

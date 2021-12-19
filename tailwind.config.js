@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 module.exports = {
   // purge: [],
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
@@ -26,11 +27,17 @@ module.exports = {
           "90%": { transform: "scaleY(0.99) scaleX(1.01)" },
           "100%": { transform: "scaleY(1) scaleX(1)" },
         },
+        scaleup: {
+          "0%": {transform: "scale(0.0)"},
+          "100%": {transform: "scaleX(1.0)"}
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         rubber: "rubberBand 0.9s linear 1 forwards",
         keepGrow: "keepGrow 0.3s ease 1 forwards",
+        scaleup: "scaleup 0.3s ease 1 forwards",
+
       },
     },
   },
@@ -41,5 +48,14 @@ module.exports = {
       cursor: ["hover"],
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({addUtilities}) {
+      const newUtilitis = {
+        '.text-xxl': {
+          fontSize: '50em'
+        }
+      };
+      addUtilities(newUtilitis, ['responsive', 'hover'])
+    })
+  ],
 };

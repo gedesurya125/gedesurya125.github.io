@@ -1,8 +1,6 @@
 import React from "react";
 import Character from "./Character";
 
-
-
 const selectTitleStyles = (
   textClassNames: TextClassNames,
   separateChar: string[],
@@ -44,7 +42,7 @@ const selectTitleStyles = (
           <Character
             key={index}
             className={`${textClassNames.subtitleCharProps} ${
-              char === " " && "w-4"
+              char === " " && "w-3"
             }`}
             character={char}
             wait={index * 100}
@@ -63,21 +61,28 @@ interface TextClassNames {
 interface Props {
   text: string;
   variant: "title" | "subtitle";
-  className?:string
+  className?: string;
 }
-const AnimatedText = ({ text, variant, className }: Props): React.ReactNodeArray => {
+const AnimatedText = ({
+  text,
+  variant,
+  className,
+}: Props) => {
   const separateChar = text.split("");
 
   const textClassNames: TextClassNames = {
-    anchorCharProps:
-      `text-7xl text-blue-800 font-extrabold inline-block animate-rubber hover:cursor-default hover:animate-keepGrow ${className || ""}`,
-    titleCharProps:
-      `text-6xl font-extrabold inline-block animate-rubber cursor-default hover:animate-keepGrow ${className || ""}`,
-    subtitleCharProps: `${className || ""}`,
+    anchorCharProps: `text-blue-800 font-extrabold inline-block animate-rubber hover:cursor-default hover:animate-keepGrow ${
+      className || ""
+    }`,
+    titleCharProps: `font-extrabold inline-block animate-rubber cursor-default hover:animate-keepGrow ${
+      className || ""
+    }`,
+    subtitleCharProps: `font-extrabold inline-block animate-rubber cursor-default hover:animate-keepGrow ${
+      className || ""
+    }`,
   };
 
-
-  return selectTitleStyles(textClassNames, separateChar, variant);
+  return <span>{selectTitleStyles(textClassNames, separateChar, variant)}</span>
 };
 
 export default AnimatedText;

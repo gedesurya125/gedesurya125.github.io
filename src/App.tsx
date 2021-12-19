@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import "./App.css";
 import DrawerContainer from "./components/drawer/DrawerContainer";
+import Project from "./pages/Project";
 
 function App() {
   type PageRouter = {
@@ -18,7 +19,7 @@ function App() {
     {
       exact: true,
       path: "/",
-      component: Home,
+      component: () => <Home/>,
     },
     {
       exact: true,
@@ -35,6 +36,11 @@ function App() {
       path: "/skills",
       component: Skills,
     },
+    {
+      exact: true,
+      path: "/project",
+      component: () => <Project/>
+    }
   ];
 
   return (
